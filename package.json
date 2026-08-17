@@ -1,0 +1,26 @@
+{
+	"name": "wp-feature-future-revisions",
+	"version": "0.1.0",
+	"description": "Public historical revisions and future-revision fork/merge for WordPress.",
+	"author": "WordPress Contributors",
+	"license": "GPL-2.0-or-later",
+	"homepage": "https://github.com/WordPress/wp-feature-future-revisions",
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start"
+	},
+	"peerDependencies": {
+		"@wordpress/api-fetch": "*",
+		"@wordpress/components": "*",
+		"@wordpress/core-data": "*",
+		"@wordpress/data": "*",
+		"@wordpress/editor": "*",
+		"@wordpress/element": "*",
+		"@wordpress/hooks": "*",
+		"@wordpress/i18n": "*",
+		"@wordpress/plugins": "*"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^31.1.0"
+	}
+}

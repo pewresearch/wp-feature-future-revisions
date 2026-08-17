@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<phpunit
+	bootstrap="tests/phpunit/bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+>
+	<testsuites>
+		<testsuite name="wp-feature-future-revisions">
+			<directory suffix=".php">tests/phpunit</directory>
+			<exclude>tests/phpunit/bootstrap.php</exclude>
+		</testsuite>
+	</testsuites>
+</phpunit>

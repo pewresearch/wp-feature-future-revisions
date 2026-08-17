@@ -1,0 +1,14 @@
+.git
+.github
+.wp-env.json
+node_modules
+vendor
+phpcs.xml.dist
+phpunit.xml.dist
+composer.json
+composer.lock
+package.json
+package-lock.json
+src
+tests
+.distignore
