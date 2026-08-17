@@ -63,7 +63,7 @@ export default function RevisionInfoFill() {
 	}
 	return (
 		<PluginPostRevisionInfo>
-			{(fillContext) => <PublicToggle context={fillContext} />}
+			{({ context } = {}) => <PublicToggle context={context} />}
 		</PluginPostRevisionInfo>
 	);
 }

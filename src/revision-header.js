@@ -13,23 +13,30 @@ import { getSupports, getRestNamespace } from './supports';
 function CreateForkButton({ context }) {
 	const [isCreating, setIsCreating] = useState(false);
 	const [error, setError] = useState(null);
-	const postStatus = useSelect(
-		(select) => select(editorStore).getEditedPostAttribute('status'),
+	const { postStatus, editorPostId } = useSelect(
+		(select) => ({
+			postStatus: select(editorStore).getEditedPostAttribute('status'),
+			editorPostId: select(editorStore).getCurrentPostId(),
+		}),
 		[]
 	);
+	const postId = context?.postId ?? editorPostId;
 
 	if (postStatus !== 'publish') {
 		return null;
 	}
 
 	async function handleCreate() {
+		if (!postId) {
+			return;
+		}
 		setIsCreating(true);
 		setError(null);
 		try {
 			const result = await apiFetch({
 				path: `/${getRestNamespace()}/forks`,
 				method: 'POST',
-				data: { post: context.postId },
+				data: { post: postId },
 			});
 			if (result.edit_url) {
 				window.location.href = result.edit_url;
@@ -47,7 +54,7 @@ function CreateForkButton({ context }) {
 				size="compact"
 				onClick={handleCreate}
 				isBusy={isCreating}
-				disabled={isCreating}
+				disabled={isCreating || !postId}
 			>
 				{isCreating
 					? __('Creating…', 'wp-feature-future-revisions')
@@ -70,7 +77,7 @@ export default function RevisionHeaderFill() {
 	}
 	return (
 		<PluginPostRevisionHeader>
-			{(fillContext) => <CreateForkButton context={fillContext} />}
+			{({ context } = {}) => <CreateForkButton context={context} />}
 		</PluginPostRevisionHeader>
 	);
 }
